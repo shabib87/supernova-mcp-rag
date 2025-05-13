@@ -126,7 +126,6 @@ web_modules/
 
 # Environment files
 .env
-.env.*
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
