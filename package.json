@@ -1,0 +1,21 @@
+{
+  "name": "supernova-monorepo",
+  "description": "Project root for MCP RAG server and monorepo sample package to demonstrate how to use internal docs to answer developer questions inside cursor chat.",
+  "version": "1.0.0",
+  "author": "shabib87",
+  "private": true,
+  "workspaces": [
+    "monorepo-sample-package",
+    "mcp-rag-server"
+  ],
+  "scripts": {
+    "install:all": "yarn install",
+    "build": "yarn workspaces run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.11.24",
+    "@types/node-fetch": "^2.6.11"
+  }
+}

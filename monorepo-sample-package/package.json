@@ -1,0 +1,12 @@
+{
+  "name": "monorepo-sample-package",
+  "version": "1.0.0",
+  "description": "Sample package to mimic a monorepo package.",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "shabib87",
+  "license": "MIT"
+}
