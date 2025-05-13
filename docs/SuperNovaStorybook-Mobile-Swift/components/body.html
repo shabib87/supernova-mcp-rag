@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Body Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+            </div>
+        </div>
+
+        <p>The Body component is a versatile text container designed for main content display with rich formatting options and optimal readability.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Body component is the primary component for displaying paragraphs of text content in your application. It's optimized for readability and offers extensive text formatting capabilities, including:</p>
+                
+                <ul>
+                    <li>Rich text formatting with Markdown support</li>
+                    <li>Multiple text styles for different content types</li>
+                    <li>Dynamic Type support for accessibility</li>
+                    <li>Custom typography and spacing control</li>
+                    <li>Link detection and handling</li>
+                </ul>
+
+                <p>Use Body components for article content, descriptions, instructions, and any other multi-paragraph text in your application.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple body text component
+let bodyText = SNSBody(text: "This is a paragraph of text that demonstrates the Body component. It supports multiple lines and automatically adjusts to fit the available width.")
+
+// Add to your screen or view
+screen.addComponent(bodyText)</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Content Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The plain text content displayed in the body.</td>
+                        </tr>
+                        <tr>
+                            <td><code>attributedText</code></td>
+                            <td><code>NSAttributedString?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Rich text content with styling attributes, takes precedence over <code>text</code> if set.</td>
+                        </tr>
+                        <tr>
+                            <td><code>htmlContent</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>HTML content to be rendered in the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>markdownContent</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Markdown content to be rendered in the body text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Text Styling Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>style</code></td>
+                            <td><code>SNSBodyStyle</code></td>
+                            <td><code>.standard</code></td>
+                            <td>The text style preset. Options are <code>standard</code>, <code>emphasized</code>, <code>small</code>, <code>quote</code>, <code>code</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>font</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 16)</code></td>
+                            <td>The font used for the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>textColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.label</code></td>
+                            <td>The color of the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>linkColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.systemBlue</code></td>
+                            <td>The color used for links within the text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>highlightColor</code></td>
+                            <td><code>UIColor?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The background color for highlighted text portions.</td>
+                        </tr>
+                        <tr>
+                            <td><code>fontSize</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>16.0</code></td>
+                            <td>The size of the font used for the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>fontWeight</code></td>
+                            <td><code>UIFont.Weight</code></td>
+                            <td><code>.regular</code></td>
+                            <td>The weight of the font used for the body text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>textAlignment</code></td>
+                            <td><code>NSTextAlignment</code></td>
+                            <td><code>.natural</code></td>
+                            <td>The alignment of the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>lineHeight</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>1.4</code></td>
+                            <td>The line height multiplier for the text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>paragraphSpacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>8.0</code></td>
+                            <td>The spacing between paragraphs in points.</td>
+                        </tr>
+                        <tr>
+                            <td><code>firstLineHeadIndent</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0.0</code></td>
+                            <td>The indentation of the first line of paragraphs.</td>
+                        </tr>
+                        <tr>
+                            <td><code>headIndent</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0.0</code></td>
+                            <td>The indentation of all lines except the first line.</td>
+                        </tr>
+                        <tr>
+                            <td><code>padding</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)</code></td>
+                            <td>The padding around the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>numberOfLines</code></td>
+                            <td><code>Int</code></td>
+                            <td><code>0</code> (unlimited)</td>
+                            <td>The maximum number of lines to display. Set to 0 for unlimited lines.</td>
+                        </tr>
+                        <tr>
+                            <td><code>lineBreakMode</code></td>
+                            <td><code>NSLineBreakMode</code></td>
+                            <td><code>.byWordWrapping</code></td>
+                            <td>The line break mode when text exceeds available width.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Interaction Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>isSelectable</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the text can be selected by the user.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isEditable</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the text can be edited by the user.</td>
+                        </tr>
+                        <tr>
+                            <td><code>dataDetectorTypes</code></td>
+                            <td><code>UIDataDetectorTypes</code></td>
+                            <td><code>.link</code></td>
+                            <td>Types of data to automatically detect and convert to links (URLs, phone numbers, etc.).</td>
+                        </tr>
+                        <tr>
+                            <td><code>linkHandler</code></td>
+                            <td><code>((URL) -> Bool)?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Callback for handling link taps. Return true to indicate the link was handled.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Accessibility Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>adjustsFontForContentSizeCategory</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether the font size adjusts based on the user's preferred content size category.</td>
+                        </tr>
+                        <tr>
+                            <td><code>accessibilityLabel</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>A custom accessibility label. If nil, the text content is used.</td>
+                        </tr>
+                        <tr>
+                            <td><code>accessibilityTraits</code></td>
+                            <td><code>UIAccessibilityTraits</code></td>
+                            <td><code>.staticText</code></td>
+                            <td>The accessibility traits of the body text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Initialize with plain text
+init(text: String)
+
+// Initialize with a specific style
+init(text: String, style: SNSBodyStyle)
+
+// Initialize with attributed text
+init(attributedText: NSAttributedString)
+
+// Initialize with HTML content
+init(html: String)
+
+// Initialize with Markdown content
+init(markdown: String)
+
+// Initialize with custom configuration
+init(text: String, font: UIFont, textColor: UIColor)</code></pre>
+                </div>
+
+                <h3 class="api-section">Content Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the body's text content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setAttributedText(_:)</code></td>
+                            <td><code>attributedText: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the body's attributed text content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setHTML(_:)</code></td>
+                            <td><code>html: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the body's content from HTML.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setMarkdown(_:)</code></td>
+                            <td><code>markdown: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the body's content from Markdown.</td>
+                        </tr>
+                        <tr>
+                            <td><code>appendText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Appends text to the existing content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>appendAttributedText(_:)</code></td>
+                            <td><code>attributedText: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Appends attributed text to the existing content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>clear()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Clears all text content.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Styling Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>applyStyle(_:)</code></td>
+                            <td><code>style: SNSBodyStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Applies a predefined style to the body text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setFont(_:size:adjustsForContentSizeCategory:)</code></td>
+                            <td><code>font: UIFont, size: CGFloat? = nil, adjustsForContentSizeCategory: Bool = true</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the font with optional size and Dynamic Type support.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTextAppearance(font:textColor:alignment:)</code></td>
+                            <td><code>font: UIFont? = nil, textColor: UIColor? = nil, alignment: NSTextAlignment? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets multiple text appearance properties at once.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setParagraphStyle(lineHeight:paragraphSpacing:firstLineHeadIndent:headIndent:)</code></td>
+                            <td><code>lineHeight: CGFloat? = nil, paragraphSpacing: CGFloat? = nil, firstLineHeadIndent: CGFloat? = nil, headIndent: CGFloat? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets paragraph styling properties.</td>
+                        </tr>
+                        <tr>
+                            <td><code>highlightText(_:color:)</code></td>
+                            <td><code>substring: String, color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Highlights all occurrences of the provided substring with the specified background color.</td>
+                        </tr>
+                        <tr>
+                            <td><code>styleRange(_:attributes:)</code></td>
+                            <td><code>range: NSRange, attributes: [NSAttributedString.Key: Any]</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Applies custom attributes to a specific range of text. Returns true if the range was valid.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Link Handling</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addLink(text:url:)</code></td>
+                            <td><code>text: String, url: URL</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Adds a link to the specified text. Returns true if the text was found.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addLink(range:url:)</code></td>
+                            <td><code>range: NSRange, url: URL</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Adds a link to the specified range. Returns true if the range was valid.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setLinkHandler(_:)</code></td>
+                            <td><code>handler: @escaping (URL) -> Bool</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a handler for when links in the text are tapped.</td>
+                        </tr>
+                        <tr>
+                            <td><code>detectLinks(types:)</code></td>
+                            <td><code>types: UIDataDetectorTypes = .link</code></td>
+                            <td><code>Void</code></td>
+                            <td>Automatically detects and applies links to matching data types in the text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Basic Body Text</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple body text component
+let bodyText = SNSBody(text: "This is a paragraph of text that demonstrates the Body component. It supports multiple lines and automatically adjusts to fit the available width.")
+
+// Add to your screen or view
+screen.addComponent(bodyText)</code></pre>
+                </div>
+                
+                <h3>Using Different Text Styles</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createBodyStyleExamples() {
+    // Standard body style
+    let standardBody = SNSBody(text: "This is the standard body text style.", style: .standard)
+    screen.addComponent(standardBody)
+    
+    // Emphasized style (slightly larger and bolder)
+    let emphasizedBody = SNSBody(text: "This text uses the emphasized style for important information.", style: .emphasized)
+    screen.addComponent(emphasizedBody)
+    
+    // Small style (smaller text)
+    let smallBody = SNSBody(text: "This text uses the small style for less important information or notes.", style: .small)
+    screen.addComponent(smallBody)
+    
+    // Quote style (indented with a vertical line)
+    let quoteBody = SNSBody(text: "This text demonstrates the quote style, which is useful for displaying quotations or excerpts from other sources.", style: .quote)
+    screen.addComponent(quoteBody)
+    
+    // Code style (monospace font with background)
+    let codeBody = SNSBody(text: "function example() { return 'Hello World'; }", style: .code)
+    screen.addComponent(codeBody)
+}</code></pre>
+                </div>
+                
+                <h3>Rich Text with Markdown</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createMarkdownBodyText() -> SNSBody {
+    // Create body text using markdown
+    let markdown = """
+    # Main Heading
+    
+    This is a paragraph with **bold text**, *italic text*, and `inline code`.
+    
+    ## Subheading
+    
+    - List item one
+    - List item two
+    - List item three
+    
+    [Visit our website](https://example.com)
+    """
+    
+    let bodyText = SNSBody(markdown: markdown)
+    return bodyText
+}</code></pre>
+                </div>
+                
+                <h3>HTML Content</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createHTMLBodyText() -> SNSBody {
+    // Create body text using HTML
+    let html = """
+    &lt;p&gt;This is a paragraph with &lt;strong&gt;bold text&lt;/strong&gt;, &lt;em&gt;italic text&lt;/em&gt;, and &lt;code&gt;inline code&lt;/code&gt;.&lt;/p&gt;
+    
+    &lt;h2&gt;Subheading&lt;/h2&gt;
+    
+    &lt;ul&gt;
+        &lt;li&gt;List item one&lt;/li&gt;
+        &lt;li&gt;List item two&lt;/li&gt;
+        &lt;li&gt;List item three&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;p&gt;&lt;a href="https://example.com"&gt;Visit our website&lt;/a&gt;&lt;/p&gt;
+    """
+    
+    let bodyText = SNSBody(html: html)
+    return bodyText
+}</code></pre>
+                </div>
+                
+                <h3>Custom Styling with Links</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createCustomStyledBodyWithLinks() -> SNSBody {
+    // Create a body component with custom styling
+    let bodyText = SNSBody(text: "Learn more about our products and services.")
+    
+    // Apply custom styling
+    bodyText.setFont(UIFont.systemFont(ofSize: 17, weight: .regular))
+    bodyText.textColor = .darkGray
+    bodyText.lineHeight = 1.5
+    bodyText.paragraphSpacing = 12
+    bodyText.padding = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
+    
+    // Add a link
+    bodyText.addLink(text: "products and services", url: URL(string: "https://example.com/products")!)
+    
+    // Handle link taps
+    bodyText.setLinkHandler { url in
+        print("Link tapped: \(url)")
+        // Open the URL, navigate to a screen, etc.
+        return true // Return true to indicate the link was handled
+    }
+    
+    return bodyText
+}</code></pre>
+                </div>
+                
+                <h3>Advanced Text Formatting</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createAdvancedFormattedText() -> SNSBody {
+    // Create attributed string with advanced formatting
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 8
+    paragraphStyle.paragraphSpacing = 16
+    paragraphStyle.firstLineHeadIndent = 20
+    
+    let attributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 16),
+        .foregroundColor: UIColor.darkGray,
+        .paragraphStyle: paragraphStyle
+    ]
+    
+    let attributedString = NSMutableAttributedString(
+        string: "This is a demonstration of advanced text formatting capabilities of the Body component. You can create complex layouts and styles using attributed strings.",
+        attributes: attributes
+    )
+    
+    // Apply different formatting to specific ranges
+    let boldRange = (attributedString.string as NSString).range(of: "advanced text formatting")
+    attributedString.addAttributes(
+        [.font: UIFont.boldSystemFont(ofSize: 16), .foregroundColor: UIColor.black],
+        range: boldRange
+    )
+    
+    let colorRange = (attributedString.string as NSString).range(of: "complex layouts and styles")
+    attributedString.addAttributes(
+        [.foregroundColor: UIColor.systemBlue, .underlineStyle: NSUnderlineStyle.single.rawValue],
+        range: colorRange
+    )
+    
+    // Create body with the attributed string
+    let bodyText = SNSBody(attributedText: attributedString)
+    return bodyText
+}</code></pre>
+                </div>
+                
+                <h3>SwiftUI Integration</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct BodyDemoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            // Use body component in SwiftUI
+            SNSBodyRepresentable {
+                let body = SNSBody(markdown: """
+                # SwiftUI Integration
+                
+                This demonstrates how to use the **Body** component from SuperNovaStorybook within SwiftUI views.
+                
+                - Seamless integration
+                - Full functionality
+                - Native appearance
+                """)
+                return body
+            }
+            .frame(minHeight: 200)
+            .padding(.horizontal)
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

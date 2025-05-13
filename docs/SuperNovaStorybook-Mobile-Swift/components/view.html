@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>View Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+            </div>
+        </div>
+
+        <p>The View component is a versatile container for organizing and displaying content within your application. It provides flexible layout options and can contain other components.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The View component serves as a flexible container in the SuperNovaStorybook component hierarchy. Unlike the Screen component, which acts as the root container, View components can be nested to create complex layouts. Views have the following features:</p>
+                
+                <ul>
+                    <li>Flexible layout options (vertical, horizontal, grid)</li>
+                    <li>Built-in padding and margin controls</li>
+                    <li>Custom background and border styling</li>
+                    <li>Shadow effects and rounded corners</li>
+                    <li>Animations and transitions</li>
+                </ul>
+
+                <p>Views are ideal for grouping related components together and creating reusable UI sections.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple card view
+let cardView = SNSView(style: .card)
+cardView.padding = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+
+// Add content to the card
+let title = SNSTitle(text: "Important Information")
+cardView.addComponent(title)
+
+let body = SNSBody(text: "This is some important information...")
+cardView.addComponent(body)
+
+// Add the card to a screen or another view
+screen.addComponent(cardView)</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Public Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>backgroundColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.clear</code></td>
+                            <td>The background color of the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>style</code></td>
+                            <td><code>SNSViewStyle</code></td>
+                            <td><code>.plain</code></td>
+                            <td>The preset style of the view. Options include <code>plain</code>, <code>card</code>, <code>grouped</code>, <code>inset</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>padding</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets.zero</code></td>
+                            <td>The internal padding for the view's content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>margin</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets.zero</code></td>
+                            <td>The external margin around the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cornerRadius</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0</code></td>
+                            <td>The corner radius of the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>borderWidth</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0</code></td>
+                            <td>The width of the view's border.</td>
+                        </tr>
+                        <tr>
+                            <td><code>borderColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.clear</code></td>
+                            <td>The color of the view's border.</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowOpacity</code></td>
+                            <td><code>Float</code></td>
+                            <td><code>0</code></td>
+                            <td>The opacity of the view's shadow (0.0 - 1.0).</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowRadius</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0</code></td>
+                            <td>The blur radius of the view's shadow.</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowOffset</code></td>
+                            <td><code>CGSize</code></td>
+                            <td><code>CGSize.zero</code></td>
+                            <td>The offset of the view's shadow.</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.black</code></td>
+                            <td>The color of the view's shadow.</td>
+                        </tr>
+                        <tr>
+                            <td><code>components</code></td>
+                            <td><code>[SNSComponent]</code></td>
+                            <td><code>[]</code></td>
+                            <td>An array of components contained in this view.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>layoutMode</code></td>
+                            <td><code>SNSLayoutMode</code></td>
+                            <td><code>.vertical</code></td>
+                            <td>The layout direction for components. Options are <code>vertical</code>, <code>horizontal</code>, <code>grid</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>spacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>8</code></td>
+                            <td>The spacing between components in the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>alignment</code></td>
+                            <td><code>SNSAlignment</code></td>
+                            <td><code>.leading</code></td>
+                            <td>The alignment of components within the view. Options include <code>leading</code>, <code>trailing</code>, <code>center</code>, <code>fill</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isScrollEnabled</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Determines if the view's content can be scrolled.</td>
+                        </tr>
+                        <tr>
+                            <td><code>heightMode</code></td>
+                            <td><code>SNSHeightMode</code></td>
+                            <td><code>.wrap</code></td>
+                            <td>Controls how the view's height is determined. Options are <code>wrap</code>, <code>fixed</code>, <code>proportional</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>height</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0</code></td>
+                            <td>The fixed height when <code>heightMode</code> is set to <code>.fixed</code> or the height proportion when set to <code>.proportional</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Default initializer
+init()
+
+// Initialize with style
+init(style: SNSViewStyle)
+
+// Initialize with layout mode
+init(layoutMode: SNSLayoutMode, spacing: CGFloat = 8)
+
+// Initialize with full configuration
+init(style: SNSViewStyle, layoutMode: SNSLayoutMode, spacing: CGFloat = 8)</code></pre>
+                </div>
+
+                <h3 class="api-section">Component Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addComponent(_:)</code></td>
+                            <td><code>component: SNSComponent</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds a component to the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>insertComponent(_:at:)</code></td>
+                            <td><code>component: SNSComponent, index: Int</code></td>
+                            <td><code>Void</code></td>
+                            <td>Inserts a component at the specified index.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeComponent(_:)</code></td>
+                            <td><code>component: SNSComponent</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Removes a component from the view. Returns true if the component was found and removed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllComponents()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all components from the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>getComponent(withId:)</code></td>
+                            <td><code>id: String</code></td>
+                            <td><code>SNSComponent?</code></td>
+                            <td>Returns the component with the specified ID, if it exists.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Styling Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>applyStyle(_:)</code></td>
+                            <td><code>style: SNSViewStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Applies a preset style to the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>applyCardStyle()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Applies the card style to the view with default settings.</td>
+                        </tr>
+                        <tr>
+                            <td><code>applyCardStyle(cornerRadius:shadowOpacity:)</code></td>
+                            <td><code>cornerRadius: CGFloat, shadowOpacity: Float</code></td>
+                            <td><code>Void</code></td>
+                            <td>Applies the card style with custom corner radius and shadow opacity.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBorder(width:color:)</code></td>
+                            <td><code>width: CGFloat, color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the border width and color for the view.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setShadow(opacity:radius:offset:color:)</code></td>
+                            <td><code>opacity: Float, radius: CGFloat, offset: CGSize, color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the shadow properties for the view.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Card View</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createCardView() -> SNSView {
+    // Create a card-style view
+    let cardView = SNSView(style: .card)
+    
+    // Customize the card appearance
+    cardView.padding = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    cardView.margin = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    cardView.cornerRadius = 12
+    
+    // Add content to the card
+    let title = SNSTitle(text: "Daily Summary")
+    cardView.addComponent(title)
+    
+    let body = SNSBody(text: "Your daily summary shows your activity progress...")
+    cardView.addComponent(body)
+    
+    // Add a divider
+    let divider = SNSDivider()
+    cardView.addComponent(divider)
+    
+    // Add footer content
+    let footerText = SNSBody(text: "Tap to view more details")
+    footerText.textColor = .secondaryLabel
+    footerText.fontSize = 14
+    cardView.addComponent(footerText)
+    
+    return cardView
+}</code></pre>
+                </div>
+                
+                <h3>Horizontal Layout</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createHorizontalLayout() -> SNSView {
+    // Create a view with horizontal layout
+    let horizontalView = SNSView(layoutMode: .horizontal, spacing: 12)
+    horizontalView.alignment = .center
+    
+    // Add an icon
+    let iconView = SNSImageView(image: UIImage(systemName: "star.fill"))
+    iconView.tintColor = .systemYellow
+    iconView.width = 32
+    iconView.height = 32
+    horizontalView.addComponent(iconView)
+    
+    // Create a nested vertical view for text
+    let textContainer = SNSView(layoutMode: .vertical, spacing: 4)
+    
+    // Add title and subtitle to the text container
+    let title = SNSTitle(text: "Featured Item")
+    title.fontSize = 16
+    textContainer.addComponent(title)
+    
+    let subtitle = SNSSubtitle(text: "Special promotion available")
+    subtitle.fontSize = 14
+    textContainer.addComponent(subtitle)
+    
+    // Add the text container to the horizontal view
+    horizontalView.addComponent(textContainer)
+    
+    return horizontalView
+}</code></pre>
+                </div>
+                
+                <h3>Grid Layout</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createGridLayout() -> SNSView {
+    // Create a view with grid layout
+    let gridView = SNSView(layoutMode: .grid, spacing: 16)
+    gridView.gridColumns = 2
+    
+    // Add multiple items to the grid
+    for i in 1...4 {
+        // Create a card for each grid item
+        let card = SNSView(style: .card)
+        card.padding = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        card.cornerRadius = 8
+        
+        // Add content to the card
+        let title = SNSTitle(text: "Item \(i)")
+        title.fontSize = 16
+        card.addComponent(title)
+        
+        let body = SNSBody(text: "This is grid item number \(i)")
+        body.fontSize = 14
+        card.addComponent(body)
+        
+        // Add the card to the grid
+        gridView.addComponent(card)
+    }
+    
+    return gridView
+}</code></pre>
+                </div>
+                
+                <h3>Nested Views with Custom Styling</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createNestedViews() -> SNSView {
+    // Create the main container
+    let containerView = SNSView()
+    containerView.backgroundColor = .systemBackground
+    containerView.padding = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    
+    // Add a title
+    let sectionTitle = SNSTitle(text: "Settings")
+    containerView.addComponent(sectionTitle)
+    
+    // Create a grouped settings view
+    let settingsView = SNSView(style: .grouped)
+    settingsView.cornerRadius = 10
+    settingsView.backgroundColor = .secondarySystemBackground
+    settingsView.margin = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+    
+    // Add setting items as rows
+    for (index, title) in ["Profile", "Notifications", "Privacy", "Help"].enumerated() {
+        // Create a row view for each setting
+        let rowView = SNSView(layoutMode: .horizontal, spacing: 12)
+        rowView.padding = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
+        rowView.alignment = .center
+        
+        // Add setting title
+        let titleLabel = SNSBody(text: title)
+        titleLabel.fontSize = 16
+        rowView.addComponent(titleLabel)
+        
+        // Add spacer to push the chevron to the right
+        let spacer = SNSSpacer()
+        rowView.addComponent(spacer)
+        
+        // Add chevron icon
+        let chevron = SNSImageView(image: UIImage(systemName: "chevron.right"))
+        chevron.tintColor = .systemGray3
+        chevron.width = 16
+        chevron.height = 16
+        rowView.addComponent(chevron)
+        
+        // Add the row to the settings view
+        settingsView.addComponent(rowView)
+        
+        // Add divider between rows (except for the last one)
+        if index < 3 {
+            let divider = SNSDivider()
+            divider.margin = UIEdgeInsets(left: 16, right: 16)
+            settingsView.addComponent(divider)
+        }
+    }
+    
+    // Add the settings view to the container
+    containerView.addComponent(settingsView)
+    
+    return containerView
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

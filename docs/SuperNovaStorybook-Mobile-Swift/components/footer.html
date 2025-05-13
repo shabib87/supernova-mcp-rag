@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Footer Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+            </div>
+        </div>
+
+        <p>The Footer component provides an area at the bottom of the screen for navigation controls, actions, and contextual information.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Footer component is a versatile container typically used at the bottom of screens to provide navigation options, primary actions, or supplementary information. Footer components include:</p>
+                
+                <ul>
+                    <li>Multiple layout styles (standard, toolbar, tabbed, etc.)</li>
+                    <li>Support for buttons, text content, and other interactive elements</li>
+                    <li>Safe area inset handling for devices with notches or home indicators</li>
+                    <li>Customizable background with blur and translucency effects</li>
+                    <li>Support for fixed, floating, or auto-hiding behaviors</li>
+                </ul>
+
+                <p>Footers are commonly used to provide primary actions, navigation controls, or legal/copyright information.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple footer with one button
+let footer = SNSFooter()
+footer.addButton(title: "Continue", style: .primary) {
+    // Handle button tap
+    navigateToNextScreen()
+}
+
+// Add to your screen
+screen.addComponent(footer)</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Appearance Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>style</code></td>
+                            <td><code>SNSFooterStyle</code></td>
+                            <td><code>.standard</code></td>
+                            <td>The style of the footer. Options include <code>standard</code>, <code>toolbar</code>, <code>tabbed</code>, <code>minimal</code>, <code>infoBar</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>backgroundColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.systemBackground</code></td>
+                            <td>The background color of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>blurEffect</code></td>
+                            <td><code>UIBlurEffect.Style?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The blur effect style applied to the footer background. If set, overrides backgroundColor.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isTranslucent</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the footer has a translucent background.</td>
+                        </tr>
+                        <tr>
+                            <td><code>borderStyle</code></td>
+                            <td><code>SNSFooterBorderStyle</code></td>
+                            <td><code>.topDivider</code></td>
+                            <td>The border style for the footer. Options include <code>none</code>, <code>topDivider</code>, <code>shadow</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>dividerColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.separator</code></td>
+                            <td>The color of the top divider when borderStyle is .topDivider.</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowOpacity</code></td>
+                            <td><code>Float</code></td>
+                            <td><code>0.2</code></td>
+                            <td>The opacity of the shadow when borderStyle is .shadow.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>height</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>56.0</code></td>
+                            <td>The height of the footer content area (excluding safe area insets).</td>
+                        </tr>
+                        <tr>
+                            <td><code>contentInsets</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)</code></td>
+                            <td>The insets for the footer's content relative to its edges.</td>
+                        </tr>
+                        <tr>
+                            <td><code>alignment</code></td>
+                            <td><code>SNSFooterAlignment</code></td>
+                            <td><code>.center</code></td>
+                            <td>The alignment of content within the footer. Options include <code>leading</code>, <code>center</code>, <code>trailing</code>, <code>spaceBetween</code>, <code>spaceAround</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>respectsSafeArea</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether the footer respects the safe area insets at the bottom.</td>
+                        </tr>
+                        <tr>
+                            <td><code>buttonSpacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>16.0</code></td>
+                            <td>The horizontal spacing between buttons in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>position</code></td>
+                            <td><code>SNSFooterPosition</code></td>
+                            <td><code>.fixed</code></td>
+                            <td>The positioning behavior of the footer. Options include <code>fixed</code>, <code>floating</code>, <code>autoHiding</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Content Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>buttons</code></td>
+                            <td><code>[SNSButton]</code></td>
+                            <td><code>[]</code></td>
+                            <td>The array of buttons contained in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional text content displayed in the footer (typically for info footer style).</td>
+                        </tr>
+                        <tr>
+                            <td><code>attributedText</code></td>
+                            <td><code>NSAttributedString?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional attributed text displayed in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>textColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.secondaryLabel</code></td>
+                            <td>The color of the text displayed in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>textFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 13)</code></td>
+                            <td>The font of the text displayed in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>textAlignment</code></td>
+                            <td><code>NSTextAlignment</code></td>
+                            <td><code>.center</code></td>
+                            <td>The alignment of the text displayed in the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>leftAccessoryView</code></td>
+                            <td><code>UIView?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional custom view displayed on the left side of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>rightAccessoryView</code></td>
+                            <td><code>UIView?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional custom view displayed on the right side of the footer.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Tab Bar Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>tabItems</code></td>
+                            <td><code>[SNSTabItem]</code></td>
+                            <td><code>[]</code></td>
+                            <td>The array of tab items when the footer style is set to .tabbed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>selectedTabIndex</code></td>
+                            <td><code>Int</code></td>
+                            <td><code>0</code></td>
+                            <td>The index of the currently selected tab.</td>
+                        </tr>
+                        <tr>
+                            <td><code>tabTintColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.tintColor</code></td>
+                            <td>The tint color for selected tabs.</td>
+                        </tr>
+                        <tr>
+                            <td><code>tabUnselectedTintColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.secondaryLabel</code></td>
+                            <td>The tint color for unselected tabs.</td>
+                        </tr>
+                        <tr>
+                            <td><code>showsTabLabels</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether to display labels beneath tab icons.</td>
+                        </tr>
+                        <tr>
+                            <td><code>tabLabelFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 10)</code></td>
+                            <td>The font used for tab labels.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Default initializer
+init()
+
+// Initialize with style
+init(style: SNSFooterStyle)
+
+// Initialize with text
+init(text: String, style: SNSFooterStyle = .infoBar)
+
+// Initialize tabbed footer
+init(tabItems: [SNSTabItem], selectedIndex: Int = 0)</code></pre>
+                </div>
+
+                <h3 class="api-section">Button Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addButton(title:style:action:)</code></td>
+                            <td><code>title: String, style: SNSButtonStyle = .primary, action: @escaping () -> Void</code></td>
+                            <td><code>SNSButton</code></td>
+                            <td>Adds a button with the specified title, style, and action. Returns the created button.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addButton(_:)</code></td>
+                            <td><code>button: SNSButton</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds a pre-configured button to the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeButton(_:)</code></td>
+                            <td><code>button: SNSButton</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Removes a button from the footer. Returns true if the button was found and removed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllButtons()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all buttons from the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setButtons(_:)</code></td>
+                            <td><code>buttons: [SNSButton]</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the buttons for the footer, replacing any existing buttons.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Tab Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addTab(title:icon:selectedIcon:action:)</code></td>
+                            <td><code>title: String, icon: UIImage, selectedIcon: UIImage? = nil, action: @escaping () -> Void</code></td>
+                            <td><code>SNSTabItem</code></td>
+                            <td>Adds a tab with the specified title, icons, and action. Returns the created tab item.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addTab(_:)</code></td>
+                            <td><code>tabItem: SNSTabItem</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds a pre-configured tab item to the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeTab(_:)</code></td>
+                            <td><code>tabItem: SNSTabItem</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Removes a tab from the footer. Returns true if the tab was found and removed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllTabs()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all tabs from the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>selectTab(at:animated:)</code></td>
+                            <td><code>index: Int, animated: Bool = true</code></td>
+                            <td><code>Void</code></td>
+                            <td>Selects the tab at the specified index.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTabSelectionHandler(_:)</code></td>
+                            <td><code>handler: @escaping (Int) -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a handler that will be called when a tab is selected.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Content Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the text content of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setAttributedText(_:)</code></td>
+                            <td><code>attributedText: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the attributed text content of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTextAppearance(font:color:alignment:)</code></td>
+                            <td><code>font: UIFont? = nil, color: UIColor? = nil, alignment: NSTextAlignment? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the appearance properties for the text content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setLeftAccessoryView(_:)</code></td>
+                            <td><code>view: UIView?</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the view displayed on the left side of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setRightAccessoryView(_:)</code></td>
+                            <td><code>view: UIView?</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the view displayed on the right side of the footer.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Appearance and Layout</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setStyle(_:)</code></td>
+                            <td><code>style: SNSFooterStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the style of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBackgroundColor(_:)</code></td>
+                            <td><code>color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the background color of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBlurEffect(_:)</code></td>
+                            <td><code>style: UIBlurEffect.Style?</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the blur effect applied to the footer background.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBorderStyle(_:color:)</code></td>
+                            <td><code>style: SNSFooterBorderStyle, color: UIColor? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the border style and optional color for the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setShadow(opacity:radius:offset:)</code></td>
+                            <td><code>opacity: Float, radius: CGFloat = 4, offset: CGSize = CGSize(width: 0, height: -2)</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the shadow properties when borderStyle is .shadow.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setPosition(_:animated:)</code></td>
+                            <td><code>position: SNSFooterPosition, animated: Bool = true</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the position behavior of the footer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setVisible(_:animated:completion:)</code></td>
+                            <td><code>visible: Bool, animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Shows or hides the footer.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Standard Footer with Buttons</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createStandardFooter() -> SNSFooter {
+    // Create a standard footer
+    let footer = SNSFooter(style: .standard)
+    
+    // Add a secondary button on the left
+    footer.addButton(title: "Cancel", style: .secondary) {
+        print("Cancel tapped")
+    }
+    
+    // Add a primary button on the right
+    footer.addButton(title: "Continue", style: .primary) {
+        print("Continue tapped")
+    }
+    
+    // Set the button alignment to space between (left and right)
+    footer.alignment = .spaceBetween
+    
+    return footer
+}</code></pre>
+                </div>
+                
+                <h3>Tabbed Footer</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createTabbedFooter() -> SNSFooter {
+    // Create a tabbed footer
+    let footer = SNSFooter(style: .tabbed)
+    
+    // Add tab items
+    footer.addTab(
+        title: "Home",
+        icon: UIImage(systemName: "house")!,
+        selectedIcon: UIImage(systemName: "house.fill")!
+    ) {
+        print("Home tab selected")
+    }
+    
+    footer.addTab(
+        title: "Explore",
+        icon: UIImage(systemName: "safari")!,
+        selectedIcon: UIImage(systemName: "safari.fill")!
+    ) {
+        print("Explore tab selected")
+    }
+    
+    footer.addTab(
+        title: "Notifications",
+        icon: UIImage(systemName: "bell")!,
+        selectedIcon: UIImage(systemName: "bell.fill")!
+    ) {
+        print("Notifications tab selected")
+    }
+    
+    footer.addTab(
+        title: "Profile",
+        icon: UIImage(systemName: "person")!,
+        selectedIcon: UIImage(systemName: "person.fill")!
+    ) {
+        print("Profile tab selected")
+    }
+    
+    // Set a global tab selection handler
+    footer.setTabSelectionHandler { index in
+        print("Tab selected at index: \(index)")
+    }
+    
+    return footer
+}</code></pre>
+                </div>
+                
+                <h3>Footer with Info Text</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createInfoFooter() -> SNSFooter {
+    // Create an info bar style footer
+    let footer = SNSFooter(style: .infoBar)
+    
+    // Set the text content
+    footer.setText("© 2025 SuperNova Inc. All rights reserved.")
+    
+    // Customize the text appearance
+    footer.setTextAppearance(
+        font: UIFont.systemFont(ofSize: 12),
+        color: .secondaryLabel,
+        alignment: .center
+    )
+    
+    // Set a blur effect background
+    footer.setBlurEffect(.systemUltraThinMaterial)
+    footer.isTranslucent = true
+    
+    return footer
+}</code></pre>
+                </div>
+                
+                <h3>Floating Action Footer</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createFloatingActionFooter() -> SNSFooter {
+    // Create a floating footer
+    let footer = SNSFooter(style: .standard)
+    footer.position = .floating
+    
+    // Set appearance for floating style
+    footer.contentInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    footer.backgroundColor = .systemBackground
+    footer.borderStyle = .shadow
+    footer.setShadow(opacity: 0.2, radius: 8)
+    footer.cornerRadius = 16
+    
+    // Add a primary action button
+    let actionButton = footer.addButton(title: "Add to Cart", style: .primary) {
+        print("Add to cart tapped")
+    }
+    
+    // Customize the button
+    actionButton.cornerRadius = 8
+    actionButton.setIcon(UIImage(systemName: "cart.badge.plus"))
+    
+    return footer
+}</code></pre>
+                </div>
+                
+                <h3>Auto-Hiding Toolbar Footer</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createToolbarFooter() -> SNSFooter {
+    // Create a toolbar footer that auto-hides when scrolling
+    let footer = SNSFooter(style: .toolbar)
+    footer.position = .autoHiding
+    
+    // Add toolbar items
+    let shareButton = SNSButton(icon: UIImage(systemName: "square.and.arrow.up")!, style: .toolbarItem)
+    shareButton.onTap = {
+        print("Share button tapped")
+    }
+    footer.addButton(shareButton)
+    
+    let favoriteButton = SNSButton(icon: UIImage(systemName: "heart")!, style: .toolbarItem)
+    favoriteButton.onTap = {
+        print("Favorite button tapped")
+    }
+    footer.addButton(favoriteButton)
+    
+    let commentButton = SNSButton(icon: UIImage(systemName: "bubble.right")!, style: .toolbarItem)
+    commentButton.onTap = {
+        print("Comment button tapped")
+    }
+    footer.addButton(commentButton)
+    
+    let bookmarkButton = SNSButton(icon: UIImage(systemName: "bookmark")!, style: .toolbarItem)
+    bookmarkButton.onTap = {
+        print("Bookmark button tapped")
+    }
+    footer.addButton(bookmarkButton)
+    
+    // Distribute items evenly
+    footer.alignment = .spaceAround
+    
+    // Set appearance
+    footer.setBlurEffect(.systemMaterial)
+    footer.isTranslucent = true
+    footer.setBorderStyle(.topDivider)
+    
+    return footer
+}</code></pre>
+                </div>
+                
+                <h3>SwiftUI Integration</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct FooterDemoView: View {
+    @State private var showCheckout = false
+    
+    var body: some View {
+        VStack {
+            // Main content
+            ScrollView {
+                Text("Product Details")
+                    .font(.largeTitle)
+                    .padding()
+                
+                // Product content here...
+                
+                Spacer(minLength: 80) // Space for the footer
+            }
+            
+            // Footer using SNSFooter in SwiftUI
+            SNSFooterRepresentable {
+                let footer = SNSFooter(style: .standard)
+                
+                footer.addButton(title: "Add to Wishlist", style: .secondary) {
+                    print("Added to wishlist")
+                }
+                
+                let buyButton = footer.addButton(title: "Buy Now", style: .primary) { [weak self] in
+                    // Update SwiftUI state
+                    self?.showCheckout = true
+                }
+                buyButton.setIcon(UIImage(systemName: "cart"))
+                
+                footer.alignment = .spaceBetween
+                return footer
+            }
+            .fixedSize(horizontal: false, vertical: true)
+        }
+        .sheet(isPresented: $showCheckout) {
+            Text("Checkout View")
+                .font(.title)
+                .padding()
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Card Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Hero Card Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag new">New in v2.3.0</span>
+            </div>
+        </div>
+
+        <p>The Hero Card component is designed for high-impact, visually appealing content display, typically used in featured sections or for highlighting important information with an accompanying image.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Hero Card component provides a prominent way to display content with visual emphasis. It's commonly used at the top of screens, feeds, or as a featured element. Hero Cards include:</p>
+                
+                <ul>
+                    <li>Large feature image that can be positioned in various ways</li>
+                    <li>Title and subtitle text with customizable styling</li>
+                    <li>Optional call-to-action buttons</li>
+                    <li>Customizable overlay effects and gradients</li>
+                    <li>Support for custom aspect ratios and image handling</li>
+                </ul>
+
+                <p>Hero Cards are designed to be eye-catching and provide clear information with strong visual support.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a basic hero card
+let heroCard = SNSHeroCard(
+    title: "Summer Collection",
+    subtitle: "Explore our new seasonal items",
+    image: UIImage(named: "summer_hero")
+)
+
+// Add to your screen
+screen.addComponent(heroCard)
+                    </code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Content Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The main title text of the hero card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitle</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The secondary subtitle text displayed beneath the title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>image</code></td>
+                            <td><code>UIImage?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The feature image displayed in the hero card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>imageURL</code></td>
+                            <td><code>URL?</code></td>
+                            <td><code>nil</code></td>
+                            <td>URL for remote image loading. Will be used if <code>image</code> is nil.</td>
+                        </tr>
+                        <tr>
+                            <td><code>placeholderImage</code></td>
+                            <td><code>UIImage?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Image displayed while the main image is loading from URL.</td>
+                        </tr>
+                        <tr>
+                            <td><code>badgeText</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional badge text displayed in the corner of the card (e.g., "New", "Featured").</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Styling Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>cardStyle</code></td>
+                            <td><code>SNSHeroCardStyle</code></td>
+                            <td><code>.imageBackground</code></td>
+                            <td>The overall style of the hero card. Options include <code>imageBackground</code>, <code>imageSide</code>, <code>imageTop</code>, <code>imageBottom</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>aspectRatio</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>1.78</code> (16:9)</td>
+                            <td>The width to height ratio of the card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cornerRadius</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>12</code></td>
+                            <td>The corner radius of the card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>overlayColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>UIColor.black.withAlphaComponent(0.3)</code></td>
+                            <td>Color overlay applied on top of the image to improve text legibility.</td>
+                        </tr>
+                        <tr>
+                            <td><code>useGradientOverlay</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether to use a gradient overlay instead of a solid overlay color.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.white</code></td>
+                            <td>The color of the title text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitleColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.white</code></td>
+                            <td>The color of the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 20, weight: .bold)</code></td>
+                            <td>The font used for the title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitleFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 16, weight: .regular)</code></td>
+                            <td>The font used for the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>contentInsets</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)</code></td>
+                            <td>Insets for the text content relative to the card edges.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Interaction Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>isPressable</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether the card responds to touch with visual feedback.</td>
+                        </tr>
+                        <tr>
+                            <td><code>pressAnimationDuration</code></td>
+                            <td><code>TimeInterval</code></td>
+                            <td><code>0.1</code></td>
+                            <td>Duration of the press animation in seconds.</td>
+                        </tr>
+                        <tr>
+                            <td><code>pressAnimationScale</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0.97</code></td>
+                            <td>Scale factor when the card is pressed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>onPress</code></td>
+                            <td><code>(() -> Void)?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Callback function executed when the card is pressed.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Basic initializer with title and image
+init(title: String, image: UIImage? = nil)
+
+// Full initializer
+init(title: String, subtitle: String? = nil, image: UIImage? = nil)
+
+// Initialize with remote image URL
+init(title: String, subtitle: String? = nil, imageURL: URL, placeholderImage: UIImage? = nil)
+
+// Initialize with style
+init(title: String, subtitle: String? = nil, image: UIImage? = nil, style: SNSHeroCardStyle)</code></pre>
+                </div>
+
+                <h3 class="api-section">Content Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setImage(_:contentMode:)</code></td>
+                            <td><code>image: UIImage, contentMode: UIView.ContentMode = .scaleAspectFill</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the card's image and content mode.</td>
+                        </tr>
+                        <tr>
+                            <td><code>loadImage(from:placeholder:)</code></td>
+                            <td><code>url: URL, placeholder: UIImage? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Loads an image from a URL with optional placeholder.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addBadge(text:color:)</code></td>
+                            <td><code>text: String, color: UIColor = .systemRed</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds a badge with text to the top corner of the card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addButton(title:style:action:)</code></td>
+                            <td><code>title: String, style: SNSButtonStyle = .primary, action: @escaping () -> Void</code></td>
+                            <td><code>SNSButton</code></td>
+                            <td>Adds a button to the card and returns the button.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Styling Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>applyStyle(_:)</code></td>
+                            <td><code>style: SNSHeroCardStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Applies a preset style to the card.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setOverlay(color:)</code></td>
+                            <td><code>color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a solid color overlay on the image.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setGradientOverlay(colors:locations:)</code></td>
+                            <td><code>colors: [UIColor], locations: [NSNumber]? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a gradient overlay on the image with the given colors and locations.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTitleStyle(font:color:)</code></td>
+                            <td><code>font: UIFont, color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the font and color for the title text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSubtitleStyle(font:color:)</code></td>
+                            <td><code>font: UIFont, color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the font and color for the subtitle text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Basic Hero Card</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a basic hero card with image
+let heroCard = SNSHeroCard(
+    title: "Summer Collection",
+    subtitle: "Explore our new seasonal items",
+    image: UIImage(named: "summer_hero")
+)
+
+// Customize corner radius and add to screen
+heroCard.cornerRadius = 16
+screen.addComponent(heroCard)</code></pre>
+                </div>
+                
+                <h3>Hero Card with Remote Image</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createRemoteImageHeroCard() -> SNSHeroCard {
+    // Create URL for remote image
+    let imageURL = URL(string: "https://example.com/path/to/image.jpg")!
+    
+    // Create hero card with remote image URL
+    let heroCard = SNSHeroCard(
+        title: "Breaking News",
+        subtitle: "The latest updates from around the world",
+        imageURL: imageURL,
+        placeholderImage: UIImage(named: "news_placeholder")
+    )
+    
+    // Add a badge
+    heroCard.addBadge(text: "LIVE", color: .systemRed)
+    
+    // Set action for when the card is tapped
+    heroCard.onPress = {
+        print("Hero card was tapped!")
+    }
+    
+    return heroCard
+}</code></pre>
+                </div>
+                
+                <h3>Styled Hero Card with Button</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createStyledHeroCard() -> SNSHeroCard {
+    // Create hero card with side image style
+    let heroCard = SNSHeroCard(
+        title: "Premium Membership",
+        subtitle: "Get exclusive access to premium content and features",
+        image: UIImage(named: "premium_banner"),
+        style: .imageSide
+    )
+    
+    // Customize appearance
+    heroCard.aspectRatio = 2.0 // 2:1 aspect ratio
+    heroCard.useGradientOverlay = true
+    heroCard.setGradientOverlay(
+        colors: [
+            UIColor.black.withAlphaComponent(0.7),
+            UIColor.black.withAlphaComponent(0.3)
+        ],
+        locations: [0.0, 1.0]
+    )
+    
+    // Style the text
+    heroCard.setTitleStyle(
+        font: UIFont.systemFont(ofSize: 24, weight: .bold),
+        color: .white
+    )
+    heroCard.setSubtitleStyle(
+        font: UIFont.systemFont(ofSize: 16, weight: .regular),
+        color: UIColor.white.withAlphaComponent(0.8)
+    )
+    
+    // Add a call-to-action button
+    let button = heroCard.addButton(title: "Upgrade Now", style: .primary) {
+        print("Upgrade button tapped!")
+    }
+    button.cornerRadius = 8
+    
+    return heroCard
+}</code></pre>
+                </div>
+                
+                <h3>Interactive Card with SwiftUI</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct HeroCardView: View {
+    @State private var showDetails = false
+    
+    var body: some View {
+        VStack {
+            // Create a SwiftUI-compatible hero card
+            SNSHeroCardRepresentable {
+                let heroCard = SNSHeroCard(
+                    title: "SwiftUI Integration",
+                    subtitle: "Using SuperNovaStorybook components in SwiftUI",
+                    image: UIImage(named: "swiftui_hero")
+                )
+                
+                heroCard.onPress = {
+                    // Update SwiftUI state when card is pressed
+                    self.showDetails.toggle()
+                }
+                
+                return heroCard
+            }
+            .frame(height: 200)
+            .padding(.horizontal)
+            
+            // Show additional content when card is tapped
+            if showDetails {
+                Text("Additional details appear here when the card is tapped.")
+                    .padding()
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(8)
+                    .padding()
+                    .transition(.opacity)
+                    .animation(.easeInOut)
+            }
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

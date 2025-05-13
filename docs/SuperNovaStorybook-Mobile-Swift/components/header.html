@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Header Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+            </div>
+        </div>
+
+        <p>The Header component provides navigation, branding, and context at the top of your screens with support for titles, buttons, and search functionality.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Header component serves as the top navigation and contextual element in your application. It provides various features including:</p>
+                
+                <ul>
+                    <li>Multiple style variants for different use cases</li>
+                    <li>Support for title, subtitle, and accessory views</li>
+                    <li>Built-in navigation controls (back button, close button)</li>
+                    <li>Search capability with integrated search bar</li>
+                    <li>Safe area handling and scroll behavior options</li>
+                </ul>
+
+                <p>Headers are commonly used to provide context about the current view, navigation controls, and access to primary actions.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple header with a title
+let header = SNSHeader(title: "Home")
+
+// Add to your screen
+screen.addComponent(header)</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Content Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The main title displayed in the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitle</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional subtitle displayed below the main title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>attributedTitle</code></td>
+                            <td><code>NSAttributedString?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Attributed string for the title, taking precedence over <code>title</code> if set.</td>
+                        </tr>
+                        <tr>
+                            <td><code>attributedSubtitle</code></td>
+                            <td><code>NSAttributedString?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Attributed string for the subtitle, taking precedence over <code>subtitle</code> if set.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleView</code></td>
+                            <td><code>UIView?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Custom view to display in place of the title and subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>leftItems</code></td>
+                            <td><code>[SNSHeaderItem]</code></td>
+                            <td><code>[]</code></td>
+                            <td>Array of items displayed on the left side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>rightItems</code></td>
+                            <td><code>[SNSHeaderItem]</code></td>
+                            <td><code>[]</code></td>
+                            <td>Array of items displayed on the right side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>logo</code></td>
+                            <td><code>UIImage?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional logo image to display in the header.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Appearance Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>style</code></td>
+                            <td><code>SNSHeaderStyle</code></td>
+                            <td><code>.standard</code></td>
+                            <td>The visual style of the header. Options include <code>standard</code>, <code>large</code>, <code>compact</code>, <code>transparent</code>, <code>prominent</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>backgroundColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.systemBackground</code></td>
+                            <td>The background color of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.label</code></td>
+                            <td>The color of the title text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitleColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.secondaryLabel</code></td>
+                            <td>The color of the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.boldSystemFont(ofSize: 17)</code></td>
+                            <td>The font used for the title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitleFont</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 13)</code></td>
+                            <td>The font used for the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>titleAlignment</code></td>
+                            <td><code>NSTextAlignment</code></td>
+                            <td><code>.center</code></td>
+                            <td>The alignment of the title text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>blurEffect</code></td>
+                            <td><code>UIBlurEffect.Style?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The blur effect style applied to the header background. If set, overrides backgroundColor.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isTranslucent</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the header has a translucent background.</td>
+                        </tr>
+                        <tr>
+                            <td><code>borderStyle</code></td>
+                            <td><code>SNSHeaderBorderStyle</code></td>
+                            <td><code>.bottomDivider</code></td>
+                            <td>The border style for the header. Options include <code>none</code>, <code>bottomDivider</code>, <code>shadow</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>dividerColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.separator</code></td>
+                            <td>The color of the bottom divider when borderStyle is .bottomDivider.</td>
+                        </tr>
+                        <tr>
+                            <td><code>shadowOpacity</code></td>
+                            <td><code>Float</code></td>
+                            <td><code>0.2</code></td>
+                            <td>The opacity of the shadow when borderStyle is .shadow.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>height</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>44.0</code></td>
+                            <td>The height of the header content area (excluding safe area insets).</td>
+                        </tr>
+                        <tr>
+                            <td><code>largeHeaderHeight</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>96.0</code></td>
+                            <td>The height of the header when style is .large.</td>
+                        </tr>
+                        <tr>
+                            <td><code>contentInsets</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)</code></td>
+                            <td>The insets for the header's content relative to its edges.</td>
+                        </tr>
+                        <tr>
+                            <td><code>respectsSafeArea</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether the header respects the safe area insets at the top.</td>
+                        </tr>
+                        <tr>
+                            <td><code>scrollBehavior</code></td>
+                            <td><code>SNSHeaderScrollBehavior</code></td>
+                            <td><code>.fixed</code></td>
+                            <td>How the header responds to scrolling. Options include <code>fixed</code>, <code>hidingOnScroll</code>, <code>condensingOnScroll</code>, <code>pinToTop</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Navigation Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>showsBackButton</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether to show a back button on the left side.</td>
+                        </tr>
+                        <tr>
+                            <td><code>backButtonTitle</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Optional title for the back button. If nil, uses the system default.</td>
+                        </tr>
+                        <tr>
+                            <td><code>backButtonIcon</code></td>
+                            <td><code>UIImage?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Custom icon for the back button. If nil, uses the system default.</td>
+                        </tr>
+                        <tr>
+                            <td><code>showsCloseButton</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether to show a close button on the left side.</td>
+                        </tr>
+                        <tr>
+                            <td><code>backButtonHandler</code></td>
+                            <td><code>(() -> Void)?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Handler called when the back button is tapped.</td>
+                        </tr>
+                        <tr>
+                            <td><code>closeButtonHandler</code></td>
+                            <td><code>(() -> Void)?</code></td>
+                            <td><code>nil</code></td>
+                            <td>Handler called when the close button is tapped.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Search Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>showsSearchBar</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether to show a search bar within the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>searchBarPlaceholder</code></td>
+                            <td><code>String</code></td>
+                            <td><code>"Search"</code></td>
+                            <td>The placeholder text for the search bar.</td>
+                        </tr>
+                        <tr>
+                            <td><code>searchBarPosition</code></td>
+                            <td><code>SNSHeaderSearchPosition</code></td>
+                            <td><code>.belowTitle</code></td>
+                            <td>The position of the search bar. Options include <code>belowTitle</code>, <code>inlineWithTitle</code>, <code>replacing</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>searchBarStyle</code></td>
+                            <td><code>SNSSearchBarStyle</code></td>
+                            <td><code>.default</code></td>
+                            <td>The style of the search bar. Options include <code>default</code>, <code>prominent</code>, <code>minimal</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>searchText</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The current text in the search bar (readable and writable).</td>
+                        </tr>
+                        <tr>
+                            <td><code>searchBarIsActive</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the search bar is currently focused and active.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Default initializer
+init()
+
+// Initialize with title
+init(title: String)
+
+// Initialize with title and style
+init(title: String, style: SNSHeaderStyle)
+
+// Initialize with title and subtitle
+init(title: String, subtitle: String)
+
+// Initialize with search configuration
+init(title: String, showsSearchBar: Bool = true, searchBarPlaceholder: String = "Search")</code></pre>
+                </div>
+
+                <h3 class="api-section">Title Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setTitle(_:)</code></td>
+                            <td><code>title: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the header title text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setAttributedTitle(_:)</code></td>
+                            <td><code>attributedTitle: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the header title using attributed text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSubtitle(_:)</code></td>
+                            <td><code>subtitle: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the header subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setAttributedSubtitle(_:)</code></td>
+                            <td><code>attributedSubtitle: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the header subtitle using attributed text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTitleView(_:)</code></td>
+                            <td><code>view: UIView</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a custom view to display in place of the title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setLogo(_:size:)</code></td>
+                            <td><code>image: UIImage, size: CGSize? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a logo image to display in the header.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Item Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addLeftItem(title:action:)</code></td>
+                            <td><code>title: String, action: @escaping () -> Void</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds a text item to the left side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addRightItem(title:action:)</code></td>
+                            <td><code>title: String, action: @escaping () -> Void</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds a text item to the right side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addLeftItem(icon:action:)</code></td>
+                            <td><code>icon: UIImage, action: @escaping () -> Void</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds an icon item to the left side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addRightItem(icon:action:)</code></td>
+                            <td><code>icon: UIImage, action: @escaping () -> Void</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds an icon item to the right side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addLeftCustomView(_:)</code></td>
+                            <td><code>view: UIView</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds a custom view to the left side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addRightCustomView(_:)</code></td>
+                            <td><code>view: UIView</code></td>
+                            <td><code>SNSHeaderItem</code></td>
+                            <td>Adds a custom view to the right side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeItem(_:)</code></td>
+                            <td><code>item: SNSHeaderItem</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Removes an item from the header. Returns true if the item was found and removed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllLeftItems()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all items from the left side of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllRightItems()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all items from the right side of the header.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Navigation</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setShowsBackButton(_:withTitle:)</code></td>
+                            <td><code>show: Bool, withTitle: String? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Shows or hides the back button with an optional title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setShowsCloseButton(_:)</code></td>
+                            <td><code>show: Bool</code></td>
+                            <td><code>Void</code></td>
+                            <td>Shows or hides the close button.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBackButtonHandler(_:)</code></td>
+                            <td><code>handler: @escaping () -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the handler for back button taps.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setCloseButtonHandler(_:)</code></td>
+                            <td><code>handler: @escaping () -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the handler for close button taps.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Search</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setShowsSearchBar(_:position:)</code></td>
+                            <td><code>shows: Bool, position: SNSHeaderSearchPosition = .belowTitle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Shows or hides the search bar with the specified position.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchBarPlaceholder(_:)</code></td>
+                            <td><code>placeholder: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the placeholder text for the search bar.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchBarStyle(_:)</code></td>
+                            <td><code>style: SNSSearchBarStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the visual style of the search bar.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchTextDidChangeHandler(_:)</code></td>
+                            <td><code>handler: @escaping (String) -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a handler that is called when the search text changes.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchDidBeginHandler(_:)</code></td>
+                            <td><code>handler: @escaping () -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a handler that is called when search begins (search bar gets focus).</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchDidEndHandler(_:)</code></td>
+                            <td><code>handler: @escaping () -> Void</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets a handler that is called when search ends (search bar loses focus).</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSearchText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the text in the search bar.</td>
+                        </tr>
+                        <tr>
+                            <td><code>focusSearchBar()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Makes the search bar the first responder (shows keyboard).</td>
+                        </tr>
+                        <tr>
+                            <td><code>dismissSearchBar()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Dismisses the search bar (hides keyboard).</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Appearance and Layout</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setStyle(_:)</code></td>
+                            <td><code>style: SNSHeaderStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the style of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBackgroundColor(_:)</code></td>
+                            <td><code>color: UIColor</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the background color of the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBlurEffect(_:)</code></td>
+                            <td><code>style: UIBlurEffect.Style?</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the blur effect applied to the header background.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setBorderStyle(_:color:)</code></td>
+                            <td><code>style: SNSHeaderBorderStyle, color: UIColor? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the border style and optional color for the header.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setShadow(opacity:radius:offset:)</code></td>
+                            <td><code>opacity: Float, radius: CGFloat = 4, offset: CGSize = CGSize(width: 0, height: 2)</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the shadow properties when borderStyle is .shadow.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTitleAppearance(font:color:alignment:)</code></td>
+                            <td><code>font: UIFont? = nil, color: UIColor? = nil, alignment: NSTextAlignment? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the appearance properties for the title.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setSubtitleAppearance(font:color:)</code></td>
+                            <td><code>font: UIFont? = nil, color: UIColor? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the appearance properties for the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setScrollBehavior(_:)</code></td>
+                            <td><code>behavior: SNSHeaderScrollBehavior</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets how the header responds to scrolling.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setVisible(_:animated:completion:)</code></td>
+                            <td><code>visible: Bool, animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Shows or hides the header.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Standard Header with Title</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createStandardHeader() -> SNSHeader {
+    // Create a standard header with title
+    let header = SNSHeader(title: "Profile")
+    
+    // Add a back button
+    header.setShowsBackButton(true, withTitle: "Home")
+    header.setBackButtonHandler {
+        print("Back button tapped")
+        // Navigate back to previous screen
+    }
+    
+    // Add a right button
+    header.addRightItem(title: "Edit") {
+        print("Edit button tapped")
+        // Show edit mode
+    }
+    
+    return header
+}</code></pre>
+                </div>
+                
+                <h3>Large Style Header with Subtitle</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createLargeHeader() -> SNSHeader {
+    // Create a large header with title and subtitle
+    let header = SNSHeader(title: "Messages", style: .large)
+    header.setSubtitle("12 unread conversations")
+    
+    // Customize appearance
+    header.setTitleAppearance(
+        font: UIFont.systemFont(ofSize: 28, weight: .bold),
+        color: .label,
+        alignment: .leading
+    )
+    header.setSubtitleAppearance(
+        font: UIFont.systemFont(ofSize: 16, weight: .regular),
+        color: .secondaryLabel
+    )
+    
+    // Add right items
+    header.addRightItem(icon: UIImage(systemName: "square.and.pencil")!) {
+        print("Compose message")
+    }
+    
+    header.addRightItem(icon: UIImage(systemName: "line.3.horizontal.decrease.circle")!) {
+        print("Filter messages")
+    }
+    
+    // Set scroll behavior
+    header.setScrollBehavior(.condensingOnScroll)
+    
+    return header
+}</code></pre>
+                </div>
+                
+                <h3>Search Header</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createSearchHeader() -> SNSHeader {
+    // Create a header with search functionality
+    let header = SNSHeader(title: "Search")
+    header.setShowsSearchBar(true, position: .belowTitle)
+    header.setSearchBarPlaceholder("Search products...")
+    
+    // Handle search text changes
+    header.setSearchTextDidChangeHandler { searchText in
+        print("Search text changed: \(searchText)")
+        // Update search results
+    }
+    
+    // Handle search focus/blur
+    header.setSearchDidBeginHandler {
+        print("Search began")
+        // Show recent searches or suggestions
+    }
+    
+    header.setSearchDidEndHandler {
+        print("Search ended")
+        // Hide suggestions if needed
+    }
+    
+    // Add a cancel button
+    header.addRightItem(title: "Cancel") {
+        print("Cancel search")
+        header.dismissSearchBar()
+        header.setSearchText("")
+    }
+    
+    return header
+}</code></pre>
+                </div>
+                
+                <h3>Transparent Header for Media Content</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createTransparentHeader() -> SNSHeader {
+    // Create a transparent header for use over images or videos
+    let header = SNSHeader(style: .transparent)
+    
+    // Make it blend with the content below
+    header.isTranslucent = true
+    header.borderStyle = .none
+    
+    // Set up navigation with contrasting colors for visibility
+    header.setShowsBackButton(true)
+    header.setBackButtonIcon(UIImage(systemName: "chevron.left.circle.fill"))
+    
+    // Add right items that stand out against any background
+    let saveItem = header.addRightItem(icon: UIImage(systemName: "bookmark.circle.fill")!) {
+        print("Save item")
+    }
+    saveItem.tintColor = .white
+    
+    let shareItem = header.addRightItem(icon: UIImage(systemName: "square.and.arrow.up.circle.fill")!) {
+        print("Share item")
+    }
+    shareItem.tintColor = .white
+    
+    return header
+}</code></pre>
+                </div>
+                
+                <h3>Brand Header with Logo</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createBrandHeader() -> SNSHeader {
+    // Create a header with a brand logo
+    let header = SNSHeader()
+    
+    // Set a logo instead of text title
+    header.setLogo(UIImage(named: "brand_logo")!, size: CGSize(width: 120, height: 32))
+    
+    // Add navigation menu button
+    header.addLeftItem(icon: UIImage(systemName: "line.horizontal.3")!) {
+        print("Open menu")
+    }
+    
+    // Add right items for common actions
+    header.addRightItem(icon: UIImage(systemName: "bell")!) {
+        print("View notifications")
+    }
+    
+    header.addRightItem(icon: UIImage(systemName: "cart")!) {
+        print("View cart")
+    }
+    
+    // Customize appearance
+    header.setBackgroundColor(.systemBackground)
+    header.setBorderStyle(.shadow)
+    header.setShadow(opacity: 0.1, radius: 4)
+    
+    return header
+}</code></pre>
+                </div>
+                
+                <h3>SwiftUI Integration</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct HeaderDemoView: View {
+    @State private var isEditing = false
+    @State private var searchText = ""
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header using SNSHeader in SwiftUI
+            SNSHeaderRepresentable {
+                let header = SNSHeader(title: "SwiftUI Demo", style: .standard)
+                
+                // Configure search
+                header.setShowsSearchBar(true)
+                header.setSearchBarPlaceholder("Search...")
+                header.setSearchTextDidChangeHandler { [weak self] text in
+                    // Update SwiftUI state
+                    self?.searchText = text
+                }
+                
+                // Add right item
+                header.addRightItem(title: self.isEditing ? "Done" : "Edit") { [weak self] in
+                    // Toggle edit state
+                    self?.isEditing.toggle()
+                }
+                
+                return header
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            
+            // Content view
+            ScrollView {
+                VStack(alignment: .leading) {
+                    if !searchText.isEmpty {
+                        Text("Searching for: \(searchText)")
+                            .padding()
+                    }
+                    
+                    if isEditing {
+                        Text("Edit mode is active")
+                            .padding()
+                            .background(Color.yellow.opacity(0.2))
+                            .cornerRadius(8)
+                            .padding()
+                    }
+                    
+                    // Main content here...
+                    ForEach(1...20, id: \.self) { i in
+                        Text("Item \(i)")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                    }
+                }
+                .padding(.vertical)
+            }
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

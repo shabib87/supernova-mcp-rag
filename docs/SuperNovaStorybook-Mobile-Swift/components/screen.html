@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Screen Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+            </div>
+        </div>
+
+        <p>The Screen component is the root container for your application's UI. It serves as the main viewport and provides layout management for all child components.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Screen component is the foundation of any SuperNovaStorybook application. It handles the following responsibilities:</p>
+                
+                <ul>
+                    <li>Managing the root view hierarchy</li>
+                    <li>Handling safe area insets</li>
+                    <li>Providing responsive layout management</li>
+                    <li>Supporting light and dark mode transitions</li>
+                    <li>Coordinating navigation between views</li>
+                </ul>
+
+                <p>Screens can contain Views, Headers, Footers, and other components to create a complete UI experience.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+class MyViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Create a screen component
+        let screen = SNSScreen()
+        
+        // Configure screen properties
+        screen.backgroundColor = .systemBackground
+        screen.safeAreaHandling = .respectAll
+        
+        // Add screen to view hierarchy
+        view.addSubview(screen)
+        
+        // Add components to screen
+        let header = SNSHeader(title: "Welcome")
+        screen.addComponent(header)
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Public Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>backgroundColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.systemBackground</code></td>
+                            <td>The background color of the screen.</td>
+                        </tr>
+                        <tr>
+                            <td><code>safeAreaHandling</code></td>
+                            <td><code>SNSSafeAreaHandling</code></td>
+                            <td><code>.respectAll</code></td>
+                            <td>Determines how the screen handles safe area insets. Options are <code>respectAll</code>, <code>ignoreAll</code>, <code>respectTop</code>, <code>respectBottom</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isScrollEnabled</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Determines if the screen content can be scrolled.</td>
+                        </tr>
+                        <tr>
+                            <td><code>navigationStyle</code></td>
+                            <td><code>SNSNavigationStyle</code></td>
+                            <td><code>.standard</code></td>
+                            <td>The navigation style of the screen. Options are <code>standard</code>, <code>compact</code>, <code>minimal</code>, <code>custom</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>components</code></td>
+                            <td><code>[SNSComponent]</code></td>
+                            <td><code>[]</code></td>
+                            <td>An array of components added to this screen.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>contentInsets</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)</code></td>
+                            <td>The padding applied to the screen's content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>layoutMode</code></td>
+                            <td><code>SNSLayoutMode</code></td>
+                            <td><code>.vertical</code></td>
+                            <td>The layout direction for components. Options are <code>vertical</code>, <code>horizontal</code>, <code>grid</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>spacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>16</code></td>
+                            <td>The spacing between components in the screen.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Default initializer
+init()
+
+// Initialize with background color
+init(backgroundColor: UIColor)
+
+// Initialize with custom layout
+init(layoutMode: SNSLayoutMode, spacing: CGFloat = 16)</code></pre>
+                </div>
+
+                <h3 class="api-section">Component Management</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addComponent(_:)</code></td>
+                            <td><code>component: SNSComponent</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds a component to the screen.</td>
+                        </tr>
+                        <tr>
+                            <td><code>insertComponent(_:at:)</code></td>
+                            <td><code>component: SNSComponent, index: Int</code></td>
+                            <td><code>Void</code></td>
+                            <td>Inserts a component at the specified index.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeComponent(_:)</code></td>
+                            <td><code>component: SNSComponent</code></td>
+                            <td><code>Bool</code></td>
+                            <td>Removes a component from the screen. Returns true if the component was found and removed.</td>
+                        </tr>
+                        <tr>
+                            <td><code>removeAllComponents()</code></td>
+                            <td>None</td>
+                            <td><code>Void</code></td>
+                            <td>Removes all components from the screen.</td>
+                        </tr>
+                        <tr>
+                            <td><code>getComponent(withId:)</code></td>
+                            <td><code>id: String</code></td>
+                            <td><code>SNSComponent?</code></td>
+                            <td>Returns the component with the specified ID, if it exists.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Navigation</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>push(screen:animated:completion:)</code></td>
+                            <td><code>screen: SNSScreen, animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Pushes a new screen onto the navigation stack.</td>
+                        </tr>
+                        <tr>
+                            <td><code>pop(animated:completion:)</code></td>
+                            <td><code>animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Pops the current screen from the navigation stack.</td>
+                        </tr>
+                        <tr>
+                            <td><code>present(screen:animated:completion:)</code></td>
+                            <td><code>screen: SNSScreen, animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Presents a screen modally.</td>
+                        </tr>
+                        <tr>
+                            <td><code>dismiss(animated:completion:)</code></td>
+                            <td><code>animated: Bool = true, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Dismisses the current modal screen.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Basic Screen Setup</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+class HomeViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Create a screen
+        let screen = SNSScreen()
+        screen.backgroundColor = .systemBackground
+        view.addSubview(screen)
+        screen.frame = view.bounds
+        screen.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Add a header
+        let header = SNSHeader(title: "Home")
+        screen.addComponent(header)
+        
+        // Add content
+        let title = SNSTitle(text: "Welcome to the app!")
+        screen.addComponent(title)
+        
+        let subtitle = SNSSubtitle(text: "Explore our features below")
+        screen.addComponent(subtitle)
+        
+        let body = SNSBody(text: "Lorem ipsum dolor sit amet...")
+        screen.addComponent(body)
+        
+        // Add a footer
+        let footer = SNSFooter()
+        footer.addButton(title: "Get Started", style: .primary) {
+            print("Button tapped!")
+        }
+        screen.addComponent(footer)
+    }
+}</code></pre>
+                </div>
+                
+                <h3>SwiftUI Integration</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct ContentView: View {
+    var body: some View {
+        SNSScreenRepresentable {
+            let screen = SNSScreen()
+            
+            let header = SNSHeader(title: "SwiftUI Integration")
+            screen.addComponent(header)
+            
+            let title = SNSTitle(text: "Using SuperNovaStorybook with SwiftUI")
+            screen.addComponent(title)
+            
+            // Return the configured screen
+            return screen
+        }
+        .edgesIgnoringSafeArea(.all)
+    }
+}</code></pre>
+                </div>
+                
+                <h3>Custom Navigation</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+class NavigationExample {
+    func setupNavigation() {
+        let firstScreen = SNSScreen()
+        firstScreen.backgroundColor = .systemBackground
+        
+        let header = SNSHeader(title: "First Screen")
+        firstScreen.addComponent(header)
+        
+        let button = SNSButton(title: "Go to Second Screen", style: .primary) { [weak self] in
+            self?.navigateToSecondScreen(from: firstScreen)
+        }
+        firstScreen.addComponent(button)
+        
+        // Present the first screen
+        SNSNavigationController.shared.setRootScreen(firstScreen)
+    }
+    
+    private func navigateToSecondScreen(from screen: SNSScreen) {
+        let secondScreen = SNSScreen()
+        secondScreen.backgroundColor = .systemBackground
+        
+        let header = SNSHeader(title: "Second Screen")
+        header.showBackButton = true
+        secondScreen.addComponent(header)
+        
+        // Push the second screen
+        screen.push(screen: secondScreen, animated: true)
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

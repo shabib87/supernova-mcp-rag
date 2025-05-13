@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtitle Component - SuperNovaStorybook</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>SuperNovaStorybook</h1>
+                <span class="version">v2.3.0</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#components">Components</a></li>
+                    <li><a href="../index.html#changes">API Changes</a></li>
+                    <li><a href="#" class="github-link">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="component-header">
+            <h1>Subtitle Component</h1>
+            <div>
+                <span class="tag">UIKit</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag new">New in v2.3.0</span>
+            </div>
+        </div>
+
+        <p>The Subtitle component provides secondary headings with customizable typography for creating clear visual hierarchies in your UI.</p>
+
+        <ul class="tabs">
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overview" class="active">
+                <h2>Overview</h2>
+                <p>The Subtitle component was introduced in v2.3.0 to offer more flexible typography options separate from the Title component. Subtitles provide secondary headings that support:</p>
+                
+                <ul>
+                    <li>Multiple styling presets for consistent typography</li>
+                    <li>Custom font, color, alignment, and line spacing</li>
+                    <li>Support for multiline text with truncation options</li>
+                    <li>Accessibility features including Dynamic Type compatibility</li>
+                    <li>Animation and transition effects</li>
+                </ul>
+
+                <p>Use Subtitle components to create clear information hierarchies and to break content into manageable sections.</p>
+
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a simple subtitle
+let subtitle = SNSSubtitle(text: "Latest Updates")
+
+// Add to your screen or view
+screen.addComponent(subtitle)</code></pre>
+                </div>
+            </div>
+
+            <div id="properties">
+                <h2>Properties</h2>
+                
+                <h3 class="api-section">Text Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td><code>String</code></td>
+                            <td><code>""</code></td>
+                            <td>The text content displayed in the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>attributedText</code></td>
+                            <td><code>NSAttributedString?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The attributed text content, which takes precedence over <code>text</code> if set.</td>
+                        </tr>
+                        <tr>
+                            <td><code>font</code></td>
+                            <td><code>UIFont</code></td>
+                            <td><code>UIFont.systemFont(ofSize: 17, weight: .semibold)</code></td>
+                            <td>The font used for the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>textColor</code></td>
+                            <td><code>UIColor</code></td>
+                            <td><code>.secondaryLabel</code></td>
+                            <td>The color of the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>numberOfLines</code></td>
+                            <td><code>Int</code></td>
+                            <td><code>0</code> (unlimited)</td>
+                            <td>The maximum number of lines to display. Set to 0 for unlimited lines.</td>
+                        </tr>
+                        <tr>
+                            <td><code>lineBreakMode</code></td>
+                            <td><code>NSLineBreakMode</code></td>
+                            <td><code>.byTruncatingTail</code></td>
+                            <td>How text should be truncated when it doesn't fit within available lines.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Layout Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>textAlignment</code></td>
+                            <td><code>NSTextAlignment</code></td>
+                            <td><code>.natural</code></td>
+                            <td>The alignment of the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>lineSpacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>4</code></td>
+                            <td>The spacing between lines of text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>letterSpacing</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0</code></td>
+                            <td>The spacing between characters in the text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>padding</code></td>
+                            <td><code>UIEdgeInsets</code></td>
+                            <td><code>UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)</code></td>
+                            <td>The padding around the subtitle text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>minimumScaleFactor</code></td>
+                            <td><code>CGFloat</code></td>
+                            <td><code>0.75</code></td>
+                            <td>The minimum scale factor for the text when using adjustsFontSizeToFitWidth.</td>
+                        </tr>
+                        <tr>
+                            <td><code>adjustsFontSizeToFitWidth</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the font size should be reduced to fit the text within available width.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Styling Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>style</code></td>
+                            <td><code>SNSSubtitleStyle</code></td>
+                            <td><code>.standard</code></td>
+                            <td>The preset style of the subtitle. Options include <code>standard</code>, <code>prominent</code>, <code>muted</code>, <code>detail</code>, <code>caption</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isSelectable</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the subtitle text can be selected by the user.</td>
+                        </tr>
+                        <tr>
+                            <td><code>isInteractive</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the subtitle responds to tap interactions.</td>
+                        </tr>
+                        <tr>
+                            <td><code>underlineStyle</code></td>
+                            <td><code>NSUnderlineStyle?</code></td>
+                            <td><code>nil</code></td>
+                            <td>The style of underline to apply to the text, if any.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 class="api-section">Accessibility Properties</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>adjustsFontForContentSizeCategory</code></td>
+                            <td><code>Bool</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether the font size adjusts based on the user's preferred content size category.</td>
+                        </tr>
+                        <tr>
+                            <td><code>accessibilityLabel</code></td>
+                            <td><code>String?</code></td>
+                            <td><code>nil</code></td>
+                            <td>A custom accessibility label for VoiceOver. If nil, the subtitle text is used.</td>
+                        </tr>
+                        <tr>
+                            <td><code>accessibilityTraits</code></td>
+                            <td><code>UIAccessibilityTraits</code></td>
+                            <td><code>.header</code></td>
+                            <td>The accessibility traits of the subtitle.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h2>Methods</h2>
+                
+                <h3 class="api-section">Initialization</h3>
+                <div class="code-block">
+                    <pre><code>// Initialize with text
+init(text: String)
+
+// Initialize with text and style
+init(text: String, style: SNSSubtitleStyle)
+
+// Initialize with attributed text
+init(attributedText: NSAttributedString)
+
+// Initialize with custom configuration
+init(text: String, font: UIFont, textColor: UIColor)
+                    </code></pre>
+                </div>
+
+                <h3 class="api-section">Text Handling Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>setText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the subtitle's text content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setAttributedText(_:)</code></td>
+                            <td><code>attributedText: NSAttributedString</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the subtitle's attributed text content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>appendText(_:)</code></td>
+                            <td><code>text: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Appends text to the existing content.</td>
+                        </tr>
+                        <tr>
+                            <td><code>applyMarkdown(_:)</code></td>
+                            <td><code>markdown: String</code></td>
+                            <td><code>Void</code></td>
+                            <td>Renders basic markdown formatting for the text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Styling Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>applyStyle(_:)</code></td>
+                            <td><code>style: SNSSubtitleStyle</code></td>
+                            <td><code>Void</code></td>
+                            <td>Applies a predefined style to the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setFont(_:adjustsForContentSizeCategory:)</code></td>
+                            <td><code>font: UIFont, adjustsForContentSizeCategory: Bool = true</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets the font with option for Dynamic Type support.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTextAppearance(font:textColor:alignment:)</code></td>
+                            <td><code>font: UIFont, textColor: UIColor, alignment: NSTextAlignment</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets multiple text appearance properties at once.</td>
+                        </tr>
+                        <tr>
+                            <td><code>setTextAttributes(_:)</code></td>
+                            <td><code>attributes: [NSAttributedString.Key: Any]</code></td>
+                            <td><code>Void</code></td>
+                            <td>Sets custom text attributes for the subtitle.</td>
+                        </tr>
+                        <tr>
+                            <td><code>addUnderline(style:color:)</code></td>
+                            <td><code>style: NSUnderlineStyle = .single, color: UIColor? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Adds an underline to the subtitle text.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="api-section">Animation Methods</h3>
+                <table class="api-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>animateTextChange(to:duration:completion:)</code></td>
+                            <td><code>text: String, duration: TimeInterval = 0.3, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Animates changing the subtitle text with a fade transition.</td>
+                        </tr>
+                        <tr>
+                            <td><code>fadeIn(duration:completion:)</code></td>
+                            <td><code>duration: TimeInterval = 0.3, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Fades in the subtitle from transparent to fully visible.</td>
+                        </tr>
+                        <tr>
+                            <td><code>fadeOut(duration:completion:)</code></td>
+                            <td><code>duration: TimeInterval = 0.3, completion: (() -> Void)? = nil</code></td>
+                            <td><code>Void</code></td>
+                            <td>Fades out the subtitle from visible to transparent.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="examples">
+                <h2>Examples</h2>
+                
+                <h3>Basic Subtitle Usage</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+// Create a standard subtitle
+let subtitle = SNSSubtitle(text: "Latest Products")
+
+// Add to screen or view
+screen.addComponent(subtitle)</code></pre>
+                </div>
+                
+                <h3>Using Different Subtitle Styles</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createSubtitleExamples() {
+    // Standard subtitle
+    let standardSubtitle = SNSSubtitle(text: "Standard Subtitle", style: .standard)
+    screen.addComponent(standardSubtitle)
+    
+    // Prominent subtitle - larger and bolder
+    let prominentSubtitle = SNSSubtitle(text: "Prominent Subtitle", style: .prominent)
+    screen.addComponent(prominentSubtitle)
+    
+    // Muted subtitle - less emphasis
+    let mutedSubtitle = SNSSubtitle(text: "Muted Subtitle", style: .muted)
+    screen.addComponent(mutedSubtitle)
+    
+    // Detail subtitle - smaller text
+    let detailSubtitle = SNSSubtitle(text: "Detail Subtitle", style: .detail)
+    screen.addComponent(detailSubtitle)
+    
+    // Caption subtitle - smallest text
+    let captionSubtitle = SNSSubtitle(text: "Caption Subtitle", style: .caption)
+    screen.addComponent(captionSubtitle)
+}</code></pre>
+                </div>
+                
+                <h3>Custom Styling</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createCustomStyledSubtitle() -> SNSSubtitle {
+    // Create a subtitle with custom styling
+    let subtitle = SNSSubtitle(text: "Upcoming Events")
+    
+    // Customize appearance
+    subtitle.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+    subtitle.textColor = .systemIndigo
+    subtitle.textAlignment = .center
+    subtitle.lineSpacing = 6
+    subtitle.letterSpacing = 0.5
+    subtitle.padding = UIEdgeInsets(top: 4, left: 0, bottom: 12, right: 0)
+    
+    // Add an underline
+    subtitle.addUnderline(style: .single, color: .systemIndigo)
+    
+    return subtitle
+}</code></pre>
+                </div>
+                
+                <h3>Attributed Text with Markdown</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createMarkdownSubtitle() -> SNSSubtitle {
+    // Create a subtitle with markdown formatting
+    let subtitle = SNSSubtitle(text: "")
+    
+    // Apply markdown formatting
+    subtitle.applyMarkdown("Explore our *premium* selection with **exclusive** benefits")
+    
+    return subtitle
+}</code></pre>
+                </div>
+                
+                <h3>Interactive Subtitle</h3>
+                <div class="code-block">
+                    <pre><code>import SuperNovaStorybook
+
+func createInteractiveSubtitle() -> SNSSubtitle {
+    // Create a subtitle that can be tapped
+    let subtitle = SNSSubtitle(text: "View All Categories")
+    
+    // Make it interactive
+    subtitle.isInteractive = true
+    subtitle.textColor = .systemBlue
+    
+    // Add tap gesture handler
+    subtitle.onTap = {
+        print("Subtitle was tapped!")
+        // Navigate to categories screen or perform other actions
+    }
+    
+    return subtitle
+}</code></pre>
+                </div>
+                
+                <h3>SwiftUI Integration</h3>
+                <div class="code-block">
+                    <pre><code>import SwiftUI
+import SuperNovaStorybook
+
+struct SubtitleDemoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            // Use subtitle component in SwiftUI
+            SNSSubtitleRepresentable {
+                let subtitle = SNSSubtitle(text: "Featured Articles")
+                subtitle.style = .prominent
+                return subtitle
+            }
+            .frame(height: 30)
+            
+            // Regular SwiftUI content
+            Text("This demonstrates how to use SuperNovaStorybook components within SwiftUI views.")
+                .font(.body)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SuperNovaStorybook Team. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">API Reference</a>
+                <a href="#">Support</a>
+                <a href="#">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
