@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "mcp-rag-server": {
+      "command": "node",
+      "args": [
+        "/absolute-path-to/supernova-mcp-rag/mcp-rag-server/dist/index.js"
+      ],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
